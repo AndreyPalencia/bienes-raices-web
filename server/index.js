@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 //Importar los router
 const housesRouter = require('./router/houses');
 const userAdmin = require('./router/admin');
@@ -8,6 +9,7 @@ const port = 3000;
 
 //Consfiguracion del servidor
 app.use(express.json())
+app.use(cors());
 
 
 

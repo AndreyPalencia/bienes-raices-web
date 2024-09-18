@@ -1,19 +1,6 @@
-//import React, { useId, useState } from "react";
 import logo from '../assets/img/logo.svg';
 import barras from '../assets/img/barras.svg';
 import modoLuna from '../assets/img/dark-mode.svg';
-import axios from 'axios';
-
-const url = "http://localhost:3000/casas";
-
-async function casas() {
-    try {
-        const res = await axios.get('http://localhost:3000/casas');
-        console.log(res.data)
-    } catch (err) {
-        console.log(err)
-    }
-}
 
 function header() {
     return (
@@ -36,7 +23,6 @@ function header() {
                     </div>
                 </div>
             </div>
-            <button onClick={casas}>Valores</button>
         </header>
     )
 }

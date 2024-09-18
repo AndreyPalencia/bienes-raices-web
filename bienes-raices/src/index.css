@@ -276,6 +276,9 @@ h4{
 .webp .inicio{
     background-image:url(../src/assets/img/header.webp)
 }
+.inicio{
+    background-image:url("../src/assets/img/header.jpg")
+}
 .header{
     background-color:#333;
     padding:0.8rem 0 2.8rem 0
@@ -469,6 +472,9 @@ h4{
     background-image:url("../src/assets/img/encuentra.jpg")
 }
 .webp .imagen-contacto{
+    background-image:url("../src/assets/img/encuentra.webp")
+}
+.imagen-contacto{
     background-image:url("../src/assets/img/encuentra.webp")
 }
 .imagen-contacto{

@@ -5,11 +5,10 @@ import Footer from "../components/footer";
 import PropiedadFila from "../components/propiedadFila";
 
 function AdminPropiedades() {
-    const [casas, setCasas] = useState([]); // Correct initialization of state
+    const [casas, setCasas] = useState([]);
     async function fetchCasas() {
         try {
             const res = await axios.get("http://localhost:3000/casas");
-            console.log(res.data);
             setCasas(res.data);
         } catch (err) {
             console.log(err);
@@ -19,6 +18,8 @@ function AdminPropiedades() {
     useEffect(() => {
         fetchCasas();
     }, []);
+
+
     return (
         <>
             <Header valorEstado={false}></Header>

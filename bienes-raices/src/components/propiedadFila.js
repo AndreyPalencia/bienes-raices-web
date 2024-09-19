@@ -1,4 +1,5 @@
 function propiedadFila({ casa }) {
+
     return (
         <tr key={casa.id}>
             <td>{casa.id}</td>

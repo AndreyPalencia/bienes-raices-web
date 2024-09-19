@@ -3,7 +3,7 @@ import Nosotros from './pages/nosotros';
 import Anunucios from './pages/anuncios';
 import Contacto from './pages/contacto';
 import Inicio from './pages/inicio';
-
+import AdminPropiedades from './pages/adminpropiedades';
 function App() {
   return (
     <Router>
@@ -13,6 +13,7 @@ function App() {
         <Route path="/nosotros" element={<Nosotros/>}></Route>
         <Route path="/anuncios" element={<Anunucios/>}></Route>
         <Route path="/contacto" element={<Contacto/>}></Route>
+        <Route path='/admin/casas' element={<AdminPropiedades/>}></Route>
       </Routes>
     </Router>
   );

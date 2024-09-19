@@ -57,18 +57,18 @@ function inicio() {
                     </a>
                 </div>
             </section>
-            <section class="imagen-contacto">
+            <section className="imagen-contacto">
                 <h2>Encuentra la casa de tus sueños</h2>
                 <p>
                     Llena el formulario de contacto y un asesor se pondrá en contacto
                     contigo a la brevedad
                 </p>
-                <a href="contacto" class="boton-amarillo">
+                <a href="contacto" className="boton-amarillo">
                     Contactános
                 </a>
             </section>
-            <div class="contenedor seccion seccion-inferior">
-                <section class="blog">
+            <div className="contenedor seccion seccion-inferior">
+                <section className="blog">
                     <h3>Nuestro Blog</h3>
                     <Articulo
                         imagen={blog1}
@@ -87,7 +87,7 @@ function inicio() {
                         contendio="Maximiza el espacio en tu hogar con esta guia, aprende a combinar muebles y colores para darle vida a tu espacio"
                     ></Articulo>
                 </section>
-                <section class="testimoniales">
+                <section className="testimoniales">
                     <h3>Testimoniales</h3>
                     <div class="testimonial">
                         <blockquote>

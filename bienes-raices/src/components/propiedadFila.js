@@ -1,17 +1,17 @@
 import axios from "axios";
 
+const handleDelete = async (e) => {
+    e.preventDefault();
+    try{
+        const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`);
+        console.log(res.data);
+        alert(JSON.stringify(res.data.mensaje))
+    }catch(err){
+        console.log(err);
+    }
+}
 function propiedadFila({ casa }) {
     const rutaImg = require("../assets/imagenes/" + casa.imagen);
-
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        try{
-            const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`);
-            console.log(res.data)
-        }catch(err){
-            console.log(err);
-        }
-    }
     return (
         <tr key={casa.id}>
             <td>{casa.id}</td>

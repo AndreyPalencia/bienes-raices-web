@@ -11,7 +11,7 @@ houseRouter.get('/', (req, res) => {
             res.status(500).json({ error: "Error a solicitar los datos" });
             return;
         }
-        res.status(200).json({ mensaje: "Datos enviados.", datos: result });
+        res.status(200).json(result);
     });
 });
 

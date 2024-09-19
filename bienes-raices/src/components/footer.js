@@ -8,7 +8,7 @@ function footer() {
                     <a href="/contacto">Contacto</a>
                 </nav>
             </div>
-            <p class="copyright">Todos los derechos Reservados 2024 &copy;</p>
+            <p className="copyright">Todos los derechos Reservados 2024 &copy;</p>
         </footer>
     )
 }

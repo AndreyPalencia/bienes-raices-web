@@ -2,6 +2,8 @@ import logo from '../assets/img/logo.svg';
 import barras from '../assets/img/barras.svg';
 import modoLuna from '../assets/img/dark-mode.svg';
 
+
+
 function header({valorEstado,  children}) {
     return (
         <header className={valorEstado ? "header inicio" : "header"}>

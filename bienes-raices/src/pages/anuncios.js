@@ -1,6 +1,6 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
 import Casas from "../components/casasComponente";
+import Footer from "../components/footer";
+import Header from "../components/header";
 
 function anunucios() {
     return (

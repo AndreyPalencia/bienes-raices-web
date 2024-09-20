@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const handleDelete = async (e) => {
-    e.preventDefault();
     try{
         const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`);
         console.log(res.data);

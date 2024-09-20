@@ -4,6 +4,9 @@ import Anunucios from './pages/anuncios';
 import Contacto from './pages/contacto';
 import Inicio from './pages/inicio';
 import AdminPropiedades from './pages/adminpropiedades';
+import Login from './pages/login';
+import CreatePropiedad from './pages/createPropiedad';
+
 function App() {
   return (
     <Router>
@@ -14,6 +17,8 @@ function App() {
         <Route path="/anuncios" element={<Anunucios/>}></Route>
         <Route path="/contacto" element={<Contacto/>}></Route>
         <Route path='/admin/casas' element={<AdminPropiedades/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path='/admin/crear-casa' element={<CreatePropiedad/>}></Route>
       </Routes>
     </Router>
   );

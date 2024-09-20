@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 function CreatePropiedad() {
     const [formData, setFormData] = useState({
         titulo: "",
         precio: "",
-        imagen: "",
+        imagen: null, 
         descripcion: "",
         habitaciones: "",
         wc: "",
@@ -13,6 +16,9 @@ function CreatePropiedad() {
         vendedorId: "",
         creado: ""
     });
+
+    const navigate = useNavigate();
+
 
     const handleChange = (e) => {
         setFormData({
@@ -26,38 +32,43 @@ function CreatePropiedad() {
         if (file) {
             setFormData({
                 ...formData,
-                imagen: file.name, 
+                imagen: file,
             });
         }
     };
 
-    const fechaCreacion = () => {
-        const fecha = new Date();
-        
-        const fechaModificada = fecha;
-        setFormData({
-            ...formData,
-            creado : fecha.toDateString(),
-        })
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        fechaCreacion();
-        try{
-            const res = await axios.post('http://localhost:3000/casa/admin/create', formData)
-            console.log(formData); 
-        }catch(err){
+    
+        // Crear un nuevo FormData
+        const data = new FormData();
+        
+        // Añadir todos los datos del formulario a FormData
+        Object.keys(formData).forEach(key => {
+            data.append(key, formData[key]);
+        });
+
+        try {
+            // Hacer la llamada a la API
+            const res = await axios.post('http://localhost:3000/casa/admin/create', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(res.data);
+            navigate('/admin/casas');
+        } catch (err) {
             console.log(err);
-            alert("Ha ocurido durante la creacion de la propiedad")
+            alert("Ha ocurrido un error durante la creación de la propiedad");
         }
     };
-
+    
     return (
         <>
+        <Header valorEstado={false}></Header>
             <main className="contenedor seccion">
                 <h1>Crear Propiedad</h1>
-                <a href="/" className="boton boton-verde">Volver</a>
+                <a href="/admin/casas" className="boton boton-verde">Volver</a>
                 <form className="formulario" onSubmit={handleSubmit}>
                     <fieldset>
                         <legend>Información General</legend>
@@ -93,8 +104,7 @@ function CreatePropiedad() {
                             onChange={handleFileChange} 
                             required
                         />
-                        <p>Archivo seleccionado: {formData.imagen}</p> {/* Mostrar nombre del archivo */}
-
+                        <p>Archivo seleccionado: {formData.imagen ? formData.imagen.name : 'Ninguno'}</p> 
                         <label htmlFor="descripcion">Descripción:</label>
                         <textarea 
                             id="descripcion" 
@@ -163,9 +173,10 @@ function CreatePropiedad() {
                         </select>
                     </fieldset>
 
-                    <input type="submit" value="Crear Propiedad" className="boton boton-verde" />
+                    <input type="submit"  value="Crear Propiedad" className="boton boton-verde" />
                 </form>
             </main>
+            <Footer></Footer>
         </>
     );
 }

@@ -1,12 +1,29 @@
-import Header from '../components/header';
-import Footer from '../components/footer';
+import { useEffect, useState } from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import axios from "axios";
 import InfoNosotros from '../components/infoNosotros';
 import Casas from '../components/casasComponente';
-import Articulo from'../components/articulo';
+import Articulo from '../components/articulo';
 import blog1 from '../assets/img/blog1.jpg';
 import blog2 from '../assets/img/blog2.jpg';
 
-function inicio() {
+function Inicio() {
+    // Llama a los hooks dentro del componente
+    const [casas, setCasas] = useState([]);
+
+    async function fetchCasas() {
+        try {
+            const res = await axios.get("http://localhost:3000/casas");
+            setCasas(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchCasas();
+    }, []);
     const lore =
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus sint unde pariatur voluptates eaque? Ipsam incidunt quisquam ea animi quas odit consequuntur, saepe nisi in voluptas enim non debitis hic.";
     return (
@@ -40,16 +57,19 @@ function inicio() {
             <section className="seccion contenedor">
                 <h1>Casas y Departamentos a la venta</h1>
                 <div className="contenedor-anuncios">
-                    <Casas
-                        imagen="anuncio2.jpg"
-                        id="1"
-                        titulo="CASA"
-                        descripcion="Casa casa casas"
-                        precio="24155"
-                        wc="2"
-                        estacionamiento="4"
-                        habitaciones="4"
-                    ></Casas>
+                    {casas.slice(0,6).map((casaRow) => (
+                        <Casas
+                            key={casaRow.id} // Siempre usa una clave única en listas
+                            imagen={casaRow.imagen}
+                            id={casaRow.id}
+                            titulo={casaRow.titulo}
+                            descripcion={casaRow.descripcion}
+                            precio={casaRow.precio}
+                            wc={casaRow.wc}
+                            estacionamiento={casaRow.estacionamiento}
+                            habitaciones={casaRow.habitaciones}
+                        />
+                    ))}
                 </div>
                 <div class="alinear-derecha">
                     <a href="anuncios.html" class="boton-verde">
@@ -72,15 +92,15 @@ function inicio() {
                     <h3>Nuestro Blog</h3>
                     <Articulo
                         imagen={blog1}
-                        textoAlternativo = "Texto Entrada Blog"
+                        textoAlternativo="Texto Entrada Blog"
                         titulo="Terraza en el techo de tu casa"
                         fecha="20/10/2021"
                         usuario="Admin"
                         contendio="Consejos para construir una terraza en el techo de tu casa con los mejores materiales y ahorrando dinero"
                     ></Articulo>
                     <Articulo
-                        imagen= {blog2}
-                        textoAlternativo = "Texto Entrada Blog"
+                        imagen={blog2}
+                        textoAlternativo="Texto Entrada Blog"
                         titulo="Guía para la decoración de tu hogar"
                         fecha="20/10/2021"
                         usuario="Admin"
@@ -103,4 +123,4 @@ function inicio() {
     );
 }
 
-export default inicio;
+export default Inicio;

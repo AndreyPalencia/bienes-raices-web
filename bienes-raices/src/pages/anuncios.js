@@ -1,24 +1,45 @@
+import { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Casas from "../components/casasComponente";
+import axios from "axios";
 
-function anunucios() {
+function Anuncios() {
+    // Llama a los hooks dentro del componente
+    const [casas, setCasas] = useState([]);
+
+    async function fetchCasas() {
+        try {
+            const res = await axios.get("http://localhost:3000/casas");
+            setCasas(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchCasas();
+    }, []);
+
     return (
         <>
             <Header valorEstado={false}></Header>
             <main className="contenedor seccion ">
                 <h1>Casas y Departamentos a la venta</h1>
                 <div className="contenedor-anuncios">
-                    <Casas
-                        imagen="anuncio2.jpg"
-                        id="1"
-                        titulo="CASA"
-                        descripcion="Casa casa casas"
-                        precio="24155"
-                        wc="2"
-                        estacionamiento="4"
-                        habitaciones="4"
-                    ></Casas>
+                    {casas.map((casaRow) => (
+                        <Casas
+                            key={casaRow.id}
+                            imagen={casaRow.imagen}
+                            id={casaRow.id}
+                            titulo={casaRow.titulo}
+                            descripcion={casaRow.descripcion}
+                            precio={casaRow.precio}
+                            wc={casaRow.wc}
+                            estacionamiento={casaRow.estacionamiento}
+                            habitaciones={casaRow.habitaciones}
+                        />
+                    ))}
                 </div>
             </main>
             <Footer></Footer>
@@ -26,4 +47,4 @@ function anunucios() {
     );
 }
 
-export default anunucios;
+export default Anuncios;

@@ -26,7 +26,7 @@ function AdminPropiedades() {
             <main className="contenedor seccion">
                 <h1>Administrador de Bienes Raices</h1>
 
-                <a href="/inicio" className="boton boton-verde">
+                <a href="/admin/crear-casa" className="boton boton-verde">
                     Nueva Propiedad
                 </a>
 

@@ -1,4 +1,4 @@
-function footer() {
+function Footer() {
     return (
         <footer className="footer seccion">
             <div className="contenedor contenedor-footer">
@@ -13,4 +13,4 @@ function footer() {
     )
 }
 
-export default footer;
+export default Footer;

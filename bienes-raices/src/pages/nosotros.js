@@ -4,7 +4,7 @@ import imgNosotros from '../assets/img/nosotros.jpg';
 import InfoNosotros from '../components/infoNosotros';
 
 
-function nosotros() {
+function Nosotros() {
     const lore = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus sint unde pariatur voluptates eaque? Ipsam incidunt quisquam ea animi quas odit consequuntur, saepe nisi in voluptas enim non debitis hic.";
     return (
         <>
@@ -39,4 +39,4 @@ function nosotros() {
     )
 }
 
-export default nosotros;
+export default Nosotros;

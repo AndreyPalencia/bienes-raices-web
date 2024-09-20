@@ -3,7 +3,7 @@ import Footer from "../components/footer";
 import FormularioContacto from '../components/fromularioContacto';
 import imgendeContacto from '../assets/img/destacada3.jpg';
 
-function contacto() {
+function Contacto() {
     return (
         <>
             <Header valorEstado={false}></Header>
@@ -20,4 +20,4 @@ function contacto() {
     )
 }
 
-export default contacto;
+export default Contacto;

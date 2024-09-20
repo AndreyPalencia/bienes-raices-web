@@ -4,7 +4,7 @@ import modoLuna from '../assets/img/dark-mode.svg';
 
 
 
-function header({valorEstado,  children}) {
+function Header({valorEstado,  children}) {
     return (
         <header className={valorEstado ? "header inicio" : "header"}>
             <div className="contenedor contenido-header">
@@ -30,4 +30,4 @@ function header({valorEstado,  children}) {
     )
 }
 
-export default header;
+export default Header;

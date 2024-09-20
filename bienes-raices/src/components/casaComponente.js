@@ -2,21 +2,25 @@ import banios from "../assets/img/icono_wc.svg";
 import iconoEstacionamiento from "../assets/img/icono_estacionamiento.svg";
 import iconoHabitaciones from "../assets/img/icono_dormitorio.svg";
 
-function casa(props) {
-    const rutaImg = require("../assets/img/" + props.imagen);
+function CasaComponente({ casa }) {
+    const { id, titulo, precio, wc, estacionamiento, habitaciones, descripcion, imagen } = casa;
+    const rutaImg = imagen ? `http://localhost:3000/imagenes/${imagen}` : '';
+
     return (
         <>
-            <h1>{props.titulo}</h1>
-            <picture>
-                <img src={rutaImg} alt={"anuncion de la casa " + props.id} />
-            </picture>
+            <h1>{titulo}</h1>
+            {imagen && (
+                <picture>
+                    <img src={rutaImg} alt={`anuncio de la casa ${id}`} />
+                </picture>
+            )}
             <div className="resumen-propiedad">
-                <h3>{props.titulo}</h3>
-                <p className="precio">{props.precio}</p>
+                <h3>{titulo}</h3>
+                <p className="precio">{precio}</p>
                 <ul className="iconos-caracteristicas">
                     <li>
                         <img loading="lazy" className="icono" src={banios} alt="icono wc" />
-                        <p>{props.wc}</p>
+                        <p>{wc || "N/A"}</p>
                     </li>
                     <li>
                         <img
@@ -24,8 +28,8 @@ function casa(props) {
                             className="icono"
                             src={iconoEstacionamiento}
                             alt="icono estacionamiento"
-                            />
-                        <p>{props.estacionamiento}</p>
+                        />
+                        <p>{estacionamiento || "N/A"}</p>
                     </li>
                     <li>
                         <img
@@ -33,14 +37,14 @@ function casa(props) {
                             className="icono"
                             src={iconoHabitaciones}
                             alt="icono habitaciones"
-                            />
-                        <p>{props.habitaciones}</p>
+                        />
+                        <p>{habitaciones || "N/A"}</p>
                     </li>
                 </ul>
-            <p>{props.descripcion}</p>
+                <p>{descripcion}</p>
             </div>
         </>
     );
 }
 
-export default casa;
+export default CasaComponente;

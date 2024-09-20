@@ -6,6 +6,8 @@ import Inicio from './pages/inicio';
 import AdminPropiedades from './pages/adminpropiedades';
 import Login from './pages/login';
 import CreatePropiedad from './pages/createPropiedad';
+import Anuncio from './pages/anuncio';
+import ModificarPropiedad from './pages/modificarpropiedad';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='/admin/casas' element={<AdminPropiedades/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path='/admin/crear-casa' element={<CreatePropiedad/>}></Route>
+        <Route path='/anuncio/:id' element={<Anuncio/>}></Route>
+        <Route path='/admin/modificar-casa/:id' element={<ModificarPropiedad/>}></Route>
       </Routes>
     </Router>
   );

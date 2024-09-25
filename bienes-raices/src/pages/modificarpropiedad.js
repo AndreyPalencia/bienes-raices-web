@@ -2,7 +2,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { api } from "../config/config";
 function ModificarPropiedad() {
 
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ function ModificarPropiedad() {
 
     const handleSubirInformacion = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/casas/${id}`);
+            const res = await api.get(`/casas/${id}`);
             const datos = await res.data[0];
             setFormData({
                 titulo: datos.titulo || "",
@@ -36,7 +36,6 @@ function ModificarPropiedad() {
                 vendedorId: datos.vendedorId || "",
                 creado: datos.creado || ""
             });
-            console.log(res.data)
         } catch (err) {
             console.log(formData)
             console.log(err);
@@ -72,13 +71,7 @@ function ModificarPropiedad() {
         try {
             const token = localStorage.getItem('token');
             // Hacer la llamada a la API
-            const res = await axios.put(`http://localhost:3000/casa/admin/update/${id}`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization : token
-                },
-            });
-            console.log(res.data);
+            const res = await api.put(`/casa/admin/update/${id}`, data);
             alert("Se modificado la propiedad con exisito.");
             navigate('/admin/casas');
         } catch (err) {

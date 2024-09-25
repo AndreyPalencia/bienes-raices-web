@@ -1,24 +1,18 @@
-import axios from "axios";
+import { api } from "../config/config";
 
-const handleDelete = async (e) => {
-    try {
-        const token = localStorage.getItem('token');
-
-        const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`, {
-            headers : {
-                Authorization : token
-            }
-        });
-        console.log(res.data);
-        alert(JSON.stringify(res.data.mensaje))
-    } catch (err) {
-        console.log(err);
-    }
-}
 
 
 function propiedadFila({ casa }) {
-    const rutaImg = "http://localhost:3000/imagenes/" +casa.imagen;
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await api.delete(`/casa/admin/delete/${casa.id}`);
+            alert(JSON.stringify(res.data.mensaje));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    const rutaImg = `${process.env.REACT_APP_URL_IMAGENES}//${casa.imagen}`;
     const direcionRutaUpdate = "/admin/modificar-casa/" + casa.id;
     return (
         <tr key={casa.id}>
@@ -29,9 +23,9 @@ function propiedadFila({ casa }) {
             }</td>
             <td>{casa.precio}</td>
             <td>
-                <form>
+                <form onSubmit={handleDelete}>
                 <a href={direcionRutaUpdate} className="boton-amarillo-block">Actualizar</a>
-                <button  value={casa.id} className="boton-rojo-block" onClick={handleDelete}>Eliminar</button>
+                <button value={casa.id} className="boton-rojo-block">Eliminar</button>
                 </form>
             </td>
         </tr>

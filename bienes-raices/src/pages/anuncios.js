@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Casas from "../components/casasComponente";
-import axios from "axios";
+import { api } from "../config/config";
 
 function Anuncios() {
     // Llama a los hooks dentro del componente
@@ -10,7 +10,7 @@ function Anuncios() {
 
     async function fetchCasas() {
         try {
-            const res = await axios.get("http://localhost:3000/casas");
+            const res = await api('/casas');
             setCasas(res.data);
         } catch (err) {
             console.log(err);

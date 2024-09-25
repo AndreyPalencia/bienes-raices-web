@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { api } from "../config/config";
 
 function CreatePropiedad() {
     const [formData, setFormData] = useState({
@@ -41,22 +41,17 @@ function CreatePropiedad() {
         e.preventDefault();
     
         // Crear un nuevo FormData
-        const data = new FormData();
+        const datos = new FormData();
         
         // Añadir todos los datos del formulario a FormData
         Object.keys(formData).forEach(key => {
-            data.append(key, formData[key]);
+            datos.append(key, formData[key]);
         });
 
         try {
             const token = localStorage.getItem('token');
             // Hacer la llamada a la API
-            const res = await axios.post('http://localhost:3000/casa/admin/create', data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization : token
-                },
-            });
+            const res = await api.post('/casa/admin/create', datos);
             console.log(res.data);
             navigate('/admin/casas');
         } catch (err) {

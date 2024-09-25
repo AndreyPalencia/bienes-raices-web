@@ -1,4 +1,3 @@
-import { Children } from "react";
 
 function infoNosotros(props) {
     const nombre = require('../assets/img/'+props.direccion);

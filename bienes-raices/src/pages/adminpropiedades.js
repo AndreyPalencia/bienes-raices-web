@@ -3,12 +3,13 @@ import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import PropiedadFila from "../components/propiedadFila";
+import { api } from "../config/config";
 
 function AdminPropiedades() {
     const [casas, setCasas] = useState([]);
     async function fetchCasas() {
         try {
-            const res = await axios.get("http://localhost:3000/casas");
+            const res = await api('/casas');
             setCasas(res.data);
         } catch (err) {
             console.log(err);

@@ -1,10 +1,9 @@
 import banios from "../assets/img/icono_wc.svg";
 import iconoEstacionamiento from "../assets/img/icono_estacionamiento.svg";
 import iconoHabitaciones from "../assets/img/icono_dormitorio.svg";
-import { Link } from "react-router-dom";
 
 function casas(props) {
-    const rutaImg = "http://localhost:3000/imagenes/" +props.imagen;
+    const rutaImg = `${process.env.REACT_APP_URL_IMAGENES}/${props.imagen}`;
     const direcionAnuncion = "/anuncio/" + props.id;
     return (
         <div className="anuncio">
@@ -39,7 +38,7 @@ function casas(props) {
                         <p>{props.habitaciones}</p>
                     </li>
                 </ul>
-                <a href={direcionAnuncion} class="boton-amarillo-block">
+                <a href={direcionAnuncion} className="boton-amarillo-block">
                     Ver Propiedad
                 </a>
             </div>

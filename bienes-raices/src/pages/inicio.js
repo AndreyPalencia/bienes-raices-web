@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import axios from "axios";
 import InfoNosotros from '../components/infoNosotros';
 import Casas from '../components/casasComponente';
 import Articulo from '../components/articulo';
 import blog1 from '../assets/img/blog1.jpg';
 import blog2 from '../assets/img/blog2.jpg';
+import { api } from "../config/config";
 
 function Inicio() {
     // Llama a los hooks dentro del componente
@@ -14,7 +14,7 @@ function Inicio() {
 
     async function fetchCasas() {
         try {
-            const res = await axios.get("http://localhost:3000/casas");
+            const res = await api.get("/casas");
             setCasas(res.data);
         } catch (err) {
             console.log(err);
@@ -71,8 +71,8 @@ function Inicio() {
                         />
                     ))}
                 </div>
-                <div class="alinear-derecha">
-                    <a href="anuncios.html" class="boton-verde">
+                <div className="alinear-derecha">
+                    <a href="anuncios.html" className="boton-verde">
                         Ver Todas
                     </a>
                 </div>
@@ -109,7 +109,7 @@ function Inicio() {
                 </section>
                 <section className="testimoniales">
                     <h3>Testimoniales</h3>
-                    <div class="testimonial">
+                    <div className="testimonial">
                         <blockquote>
                             El personal se comportó de una excelente forma, muy buena atención
                             y la casa que me ofrecieron cumple con todas mis expectativas.

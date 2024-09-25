@@ -4,7 +4,8 @@ import iconoHabitaciones from "../assets/img/icono_dormitorio.svg";
 
 function CasaComponente({ casa }) {
     const { id, titulo, precio, wc, estacionamiento, habitaciones, descripcion, imagen } = casa;
-    const rutaImg = imagen ? `http://localhost:3000/imagenes/${imagen}` : '';
+    const url = `${process.env.REACT_APP_URL_IMAGENES}/${imagen}`
+    const rutaImg = imagen ? url : '';
 
     return (
         <>

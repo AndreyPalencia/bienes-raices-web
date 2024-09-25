@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from 'react';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { api } from "../config/config";
 
 function Login() {
     const navegate = useNavigate();
@@ -22,10 +22,7 @@ function Login() {
     const submit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3000/login/autorizacionLogin", {
-                password: formData.password,
-                email: formData.email
-            });
+            const response = await api.post("/login/autorizacionLogin",formData);
 
             if (response.data.token){
                 localStorage.setItem('token', response.data.token);
@@ -33,7 +30,6 @@ function Login() {
             }else{
                 alert('Error: ' + response.data.mensaje );
             }
-            console.log(response.data);
         } catch (error) {
             console.error("Error al enviar el formulario", error);
             alert("Error al enviar el formulario");

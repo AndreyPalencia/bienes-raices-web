@@ -1,6 +1,6 @@
 const express = require('express');
 const houseRouter = express.Router()
-const pool = require('../db');
+const pool = require('../db/db');
 
 //Para obtner un todas la casas
 houseRouter.get('/', (req, res) => {

@@ -6,6 +6,7 @@ const path = require('path');
 //Importar los router
 const housesRouter = require('./router/houses');
 const userAdmin = require('./router/admin');
+const autenficacion = require('./auth/autentificacion');
 
 const app = express();
 const port = 3000;
@@ -14,10 +15,12 @@ const port = 3000;
 app.use(express.json())
 app.use(cors());
 
+
 app.use('/imagenes', express.static(path.join(__dirname, 'imagenes')));
 
 app.use('/casas', housesRouter);
 app.use('/casa/admin', userAdmin);
+app.use('/login', autenficacion);
 
 
 app.listen(port, () => {

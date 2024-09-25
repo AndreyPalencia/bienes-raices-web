@@ -2,19 +2,22 @@ const express = require('express');
 //Para manero el manejo de las imganes en directoriso
 const multer = require('multer');
 const userAdmin = express.Router()
-const pool = require('../db');
+const pool = require('../db/db');
 
 //Para el manejo de las imagenes de ruta de las imagenes
 const path = require('path');
 const fs = require('fs')
 
 //Importar la configuracion
-const storage = require('../imgURL');
+const storage = require('../urlImagenes');
 //Para agregar la configuracion a multer
 const imagenes = multer({ storage });
 
+//Importamos el archivo para autenficacion de las peticiones
+const verificacionToken = require('../auth/autorizacion')
+
 //Para obtner un todas la casas
-userAdmin.post('/create', imagenes.single('imagen'), (req, res) => {
+userAdmin.post('/create',verificacionToken, imagenes.single('imagen'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }
@@ -39,7 +42,7 @@ userAdmin.post('/create', imagenes.single('imagen'), (req, res) => {
     });
 });
 
-userAdmin.put('/update/:id', imagenes.single('imagen'),(req, res) => {
+userAdmin.put('/update/:id',verificacionToken, imagenes.single('imagen'),(req, res) => {
     
     const id = req.params.id;
     
@@ -95,7 +98,7 @@ userAdmin.put('/update/:id', imagenes.single('imagen'),(req, res) => {
 
 });
 
-userAdmin.delete('/delete/:id', (req, res) => {
+userAdmin.delete('/delete/:id',verificacionToken, (req, res) => {
     const id = req.params.id;
     if (!id || isNaN(id)) {
         res.status(400).json({ mensaje: "Id no puede ser null o invalido" });

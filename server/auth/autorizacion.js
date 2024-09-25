@@ -19,3 +19,5 @@ const verificacionToken = (res,req,next) => {
         res.status(400).json({ mesaje: 'Token Invalido.' });
     }
 }
+
+module.exports = verificacionToken;

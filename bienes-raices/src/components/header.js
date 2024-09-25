@@ -1,10 +1,22 @@
 import logo from '../assets/img/logo.svg';
 import barras from '../assets/img/barras.svg';
 import modoLuna from '../assets/img/dark-mode.svg';
+import { useEffect, useState } from "react";
 
 
+function Header({valorEstado,children}) {
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    
+    useEffect( () => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token)
+    }, []);
 
-function Header({valorEstado,  children}) {
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false)
+    }
     return (
         <header className={valorEstado ? "header inicio" : "header"}>
             <div className="contenedor contenido-header">
@@ -21,6 +33,13 @@ function Header({valorEstado,  children}) {
                             <a href="/nosotros">Nosotros</a>
                             <a href="/anuncios">Anuncios</a>
                             <a href="/contacto">Contacto</a>
+                            {
+                                isLoggedIn ? (
+                                    <a  href='/login' onClick={handleLogout}>Cerrar Sesión</a>
+                                ) : (
+                                    <a href='/login'>Iniciar Sesión</a>
+                                )
+                            }
                         </nav>
                     </div>
                 </div>

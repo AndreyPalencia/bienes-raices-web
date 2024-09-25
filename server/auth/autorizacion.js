@@ -17,7 +17,7 @@ const verificacionToken = (req,res,next) => {
         next();
     }catch(err){
         console.log(err);
-        return res.status(400).json({ mesaje: 'Token Invalido.' });
+        return res.status(401).json({ mesaje: 'Token Invalido.' });
     }
 }
 

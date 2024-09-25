@@ -4,7 +4,6 @@ import { api } from "../config/config";
 
 function propiedadFila({ casa }) {
     const handleDelete = async (e) => {
-        e.preventDefault();
         try {
             const res = await api.delete(`/casa/admin/delete/${casa.id}`);
             alert(JSON.stringify(res.data.mensaje));

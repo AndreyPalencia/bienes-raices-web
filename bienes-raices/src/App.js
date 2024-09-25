@@ -11,6 +11,7 @@ import CreatePropiedad from './pages/createPropiedad';
 import ModificarPropiedad from './pages/modificarpropiedad';
 
 function App() {
+  
   return (
     <Router>
       <Routes>

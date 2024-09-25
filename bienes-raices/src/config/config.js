@@ -19,7 +19,6 @@ api.interceptors.request.use(
         const token = localStorage.getItem('token');
         if (token) {
             config.headers['Authorization'] = token;
-            config.headers['User-Agent'] = 'CustomUserAgent/1.0';
         }
         return config;
     },

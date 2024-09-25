@@ -70,10 +70,12 @@ function ModificarPropiedad() {
         });
 
         try {
+            const token = localStorage.getItem('token');
             // Hacer la llamada a la API
             const res = await axios.put(`http://localhost:3000/casa/admin/update/${id}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization : token
                 },
             });
             console.log(res.data);
@@ -90,6 +92,7 @@ function ModificarPropiedad() {
     }, [id])
     return (
         <>
+        <Header></Header>
             <main className="contenedor seccion">
                 <h1>Actulizar Propiedad</h1>
                 <a href="/admin/casas" className="boton boton-verde">Volver</a>
@@ -200,6 +203,7 @@ function ModificarPropiedad() {
                     <input type="submit" value="Modificar Propiedad" className="boton boton-verde" />
                 </form>
             </main>
+            <Footer></Footer>
         </>
     )
 }

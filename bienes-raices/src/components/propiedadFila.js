@@ -2,7 +2,13 @@ import axios from "axios";
 
 const handleDelete = async (e) => {
     try {
-        const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`);
+        const token = localStorage.getItem('token');
+
+        const res = await axios.delete(`http://localhost:3000/casa/admin/delete/${e.target.value}`, {
+            headers : {
+                Authorization : token
+            }
+        });
         console.log(res.data);
         alert(JSON.stringify(res.data.mensaje))
     } catch (err) {
@@ -23,8 +29,10 @@ function propiedadFila({ casa }) {
             }</td>
             <td>{casa.precio}</td>
             <td>
+                <form>
                 <a href={direcionRutaUpdate} className="boton-amarillo-block">Actualizar</a>
-                <button value={casa.id} className="boton-rojo-block" onClick={handleDelete}>Eliminar</button>
+                <button  value={casa.id} className="boton-rojo-block" onClick={handleDelete}>Eliminar</button>
+                </form>
             </td>
         </tr>
     )

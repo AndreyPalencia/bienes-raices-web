@@ -49,10 +49,12 @@ function CreatePropiedad() {
         });
 
         try {
+            const token = localStorage.getItem('token');
             // Hacer la llamada a la API
             const res = await axios.post('http://localhost:3000/casa/admin/create', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization : token
                 },
             });
             console.log(res.data);
